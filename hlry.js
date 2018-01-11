@@ -109,6 +109,25 @@ function SiguienteVideo(){
 varConteVideo[0].onended = SiguienteVideo;
 // FIN 3
 
+var iframe2 = document.getElementById('iframeVideoX');
+iframe2.contentDocument.getElementById('container').style.display = "none";
+
+
+var divControles = document.createElement('div');
+divControles.setAttribute('id', 'divControles');
+divControles.style.display = 'block';
+var txtUrlVideoYoutube = document.createElement('input');
+txtUrlVideoYoutube.setAttribute('id', 'txtUrlVideoYoutube');
+var btnAgregar = document.createElement('buttom');
+btnAgregar.setAttribute('id', 'btnAgregar');
+btnAgregar.innerHTML = 'Agregar';
+divControles.appendChild(txtUrlVideoYoutube);
+divControles.appendChild(btnAgregar);
+
+document.getElementsByTagName('body').insertBefore(divControles, document.getElementsByTagName('ytd-app')[0]);
+
+
+
 
 
 //salsa
