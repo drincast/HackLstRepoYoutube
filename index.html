@@ -6,9 +6,18 @@
   </head>
   <body>
     <div id="divReproductor">
-      <label for="txtUrlVideoYoutube">Url Video: </label>
-      <input id="txtUrlVideoYoutube" type="text">
-      <button type="button" name="btnAgregar" id="btnAgregar">Agregar</button>
+      <div style="margin-bottom:5px;">
+        <button type="button" id="btnSiguiente" name="btnSiguiente">Siguiente video</button>
+      </div>
+      <div style="margin-bottom:5px;">
+        <label for="txtUrlVideoYoutube">Url Video: </label>
+        <input id="txtUrlVideoYoutube" type="text">
+      </div>
+      <div>
+        Agregar ...
+        <button type="button" id="btnJDespues" name="btnJDespues">justo despues</button>
+        <button type="button" id="btnCola" name="btnCola">a la cola</button>
+      </div>
     </div>
     <iframe id="iframeVideo" src=""></iframe>
   </body>
