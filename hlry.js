@@ -135,7 +135,7 @@ divSiguiente.style.marginBottom = '5px';
 var btnSiguiente = document.createElement('button');
 btnSiguiente.setAttribute('id', 'btnSiguiente');
 btnSiguiente.innerHTML = 'Siguiente';
-btnSiguiente.addEventListener('onclick', SiguienteVideo);
+btnSiguiente.addEventListener('click', SiguienteVideo);
 divSiguiente.appendChild(btnSiguiente);
 
 var divURL = document.createElement('div');
