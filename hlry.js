@@ -209,6 +209,10 @@ lstVideos: ["https://www.youtube.com/watch?v=JRfuAukYTKg", "https://www.youtube.
 ["https://www.youtube.com/watch?v=JbjzPKTfjlc", "https://www.youtube.com/watch?v=rExcQ5nm_yU", "https://www.youtube.com/watch?v=Pm1a7VzISK4", "https://www.youtube.com/watch?v=pL0bxewHbjo", "https://www.youtube.com/watch?v=2W_G3xmSGfo", "https://www.youtube.com/watch?v=W_0GdB4oD6s", "https://www.youtube.com/watch?v=4I_NYya-WWg", "https://www.youtube.com/watch?v=GdU6snztM0A", "https://www.youtube.com/watch?v=eHwR9kTIMeI", "https://www.youtube.com/watch?v=NvryolGa19A", "https://www.youtube.com/watch?v=kcihcYEOeic", "https://www.youtube.com/watch?v=fciL4yULkns"]
 
 
+//lista rock español
+["iQiQYbTA0sw", "wL2012Q3h3M", "75_slEkywpY", "YbK00KvsNAE", "zABYI-f7wkE", "re1btP_rGys", "AruE3oCxF70", "UJqcH0my0mY", "uvVNoP6U1OQ", "50jlKbvk9O0", "Ru24puGqKuM", "uZ3x0I5lIGo", "_R-l7KYx9sM", "HIppnw4wt7Q", "fnD0MKzq6QI", "hbiQn4-1qv8", "PUzWDf9S9Rk", "R7s6rZuuff8", "guHN79sQ3gk", "Kdp4KAyO2Zo", "BESD2Oo2PrQ"]
+
+
 //---------------------------------------------------------
 
 //Se inicia creación de clase/objeto que maneje la reproducción
@@ -263,6 +267,15 @@ hlry.m = {
       console.log(txtUrlVideoYoutube.value);
       txtUrlVideoYoutube.value = txtUrlVideoYoutube.value.replace(hlry.p.urlPpal, '');
       hlry.p.lstVideos.splice(1, 0, txtUrlVideoYoutube.value);
+      txtUrlVideoYoutube.value = "";
+    }
+  },
+
+  agregarVideoAlFinal2: function(){
+    if(txtUrlVideoYoutube.value !== ""){
+      console.log(txtUrlVideoYoutube.value);
+      txtUrlVideoYoutube.value = txtUrlVideoYoutube.value.replace(hlry.p.urlPpal, '');
+      hlry.p.lstVideos.push(txtUrlVideoYoutube.value);
       txtUrlVideoYoutube.value = "";
     }
   },
