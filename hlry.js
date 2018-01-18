@@ -210,7 +210,7 @@ lstVideos: ["https://www.youtube.com/watch?v=JRfuAukYTKg", "https://www.youtube.
 
 
 //lista rock español
-["iQiQYbTA0sw", "wL2012Q3h3M", "75_slEkywpY", "YbK00KvsNAE", "zABYI-f7wkE", "re1btP_rGys", "AruE3oCxF70", "UJqcH0my0mY", "uvVNoP6U1OQ", "50jlKbvk9O0", "Ru24puGqKuM", "uZ3x0I5lIGo", "_R-l7KYx9sM", "HIppnw4wt7Q", "fnD0MKzq6QI", "hbiQn4-1qv8", "PUzWDf9S9Rk", "R7s6rZuuff8", "guHN79sQ3gk", "Kdp4KAyO2Zo", "BESD2Oo2PrQ"]
+["iQiQYbTA0sw", "wL2012Q3h3M", "75_slEkywpY", "YbK00KvsNAE", "zABYI-f7wkE", "re1btP_rGys", "AruE3oCxF70", "UJqcH0my0mY", "uvVNoP6U1OQ", "50jlKbvk9O0", "slctnzJ2dzA", "yh8S4Blnd6M", "Ru24puGqKuM", "hSylsKEKGCo", "uZ3x0I5lIGo", "_R-l7KYx9sM", "HIppnw4wt7Q", "fnD0MKzq6QI", "hbiQn4-1qv8", "PUzWDf9S9Rk", "R7s6rZuuff8", "guHN79sQ3gk", "Kdp4KAyO2Zo", "BESD2Oo2PrQ"]
 
 
 //---------------------------------------------------------
