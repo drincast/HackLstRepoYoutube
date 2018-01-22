@@ -47,7 +47,7 @@ varConteVideo[0].onended = SiguienteVideo;
 
 //listas de videos
 //salsa
-["AYc8SC5nnNA", "wU52X9duq6U", "hQdN437xMHg", "scC8I9xl4eg", "cgXGhyGwMFc", "7z2SULKMdiQ", "JfoIqtyCnCU", "7KxkMLAZlzw", "J1--Eg5DPRo", "arWvQNcLKqs", "A3uIUXMJ1xc", "KS9xeYh-HWk", "XiEoCGjwN08", "r4WWa5j-NJk", "WI0Ikrs3E_k", "ZChfr2rhQEg", "q9SqG4XX8ZU", "7vuYeJ1gSSE", "x6EGixAn7Lk", "3H2rE2i_fL4", "0wWRdgEw1I0", "XixGgMfaJck", "RGqQXW_qblg", "1ZguRilbRjA", "83h-cjtfTgE", "coW-lY_uHWM", "QkZscosb6mM", "hd0cl2d2ziU", "Njkg2ubUaug", "fciL4yULkns", "k4ZYi0DbpTY", "JfoIqtyCnCU"]
+["scC8I9xl4eg", "cgXGhyGwMFc", "7z2SULKMdiQ", "JfoIqtyCnCU", "7KxkMLAZlzw", "J1--Eg5DPRo", "arWvQNcLKqs", "A3uIUXMJ1xc", "KS9xeYh-HWk", "XiEoCGjwN08", "r4WWa5j-NJk", "WI0Ikrs3E_k", "ZChfr2rhQEg", "q9SqG4XX8ZU", "7vuYeJ1gSSE", "x6EGixAn7Lk", "3H2rE2i_fL4", "0wWRdgEw1I0", "XixGgMfaJck", "RGqQXW_qblg", "1ZguRilbRjA", "83h-cjtfTgE", "coW-lY_uHWM", "QkZscosb6mM", "hd0cl2d2ziU", "Njkg2ubUaug", "fciL4yULkns", "k4ZYi0DbpTY", "JfoIqtyCnCU", "AYc8SC5nnNA", "wU52X9duq6U", "cEz2J24LLUw", "j_CfZK8FPqY", "BUCtau7a7Ak", "_EQIyt5-z0I", "C5ihFyxaUMo", "v2zARXKRHVg", "DZtGjOqqlbE", "SYMx8kT4c7U", "ket82fTGQpg", "0ykUIOdmkj8", "PDUYfpDhD40", "QBuueYkmYVI", "4YAoWksQhw4", "OvQArMzHt90", "PdoNzV19vng", "hQdN437xMHg", "tY9oa_1rZsw"]
 
 //rock
 ["EU0LljxpHIk", "fnD0MKzq6QI", "6NXnxTNIWkc", "75_slEkywpY", "hSylsKEKGCo", "z_NJhmtQWAs", "PUzWDf9S9Rk", "JAU88rTbPGg", "fciL4yULkns", "r2g0pM3PMNQ", "1w7OgIMMRc4", "l9kXym1doYA", "twEGSGpLiyc", "YbK00KvsNAE", "re1btP_rGys", "7QU1nvuxaMA"]
@@ -93,8 +93,12 @@ hlry.p = {
 
   //controles html
   divReproductor: null,
+  divContenF: null,
+  divIzq: null,
+  divDer: null,
   divSiguiente: null,
   btnSiguiente: null,
+  btnQuitar: null,
   divURL: null,
   lblURLV: null,
   txtUrlVideoYoutube: null,
@@ -148,6 +152,15 @@ hlry.m = {
     siguienteVideo();
   },
 
+  quitarActual: function(){
+    if(hlry.p.lstVideos.length > 0){
+      hlry.p.lstVideos.shift();
+    }
+    else{
+      alert("!es el ultimo¡, no se puede elimar");
+    }
+  },
+
   actulizarNodoVideo: function(){
     hlry.p.varConteVideo = hlry.p.iframeVideo.contentDocument.getElementById('movie_player').getElementsByTagName('video');
     hlry.p.varConteVideo[0].onended = hlry.m.siguienteVideo;
@@ -175,6 +188,22 @@ hlry.m = {
     hlry.p.nodoPadre.appendChild(hlry.p.iframeVideo);
   },
 
+  crearDivFila: function(){
+    hlry.p.divContenF = document.createElement('div');
+    hlry.p.divIzq = document.createElement('div');
+    hlry.p.divDer = document.createElement('div');
+    hlry.p.divIzq.style.width = '70px';
+    hlry.p.divDer.style.width = '300px';
+    hlry.p.divIzq.style.display = 'inline-block';
+    hlry.p.divIzq.style.marginRight = '5px';
+    hlry.p.divIzq.style.textAlign = 'right';
+    hlry.p.divDer.style.display = 'inline-block';
+    hlry.p.divContenF.style.display = 'block';
+    hlry.p.divContenF.style.marginBottom = '5px';
+    hlry.p.divContenF.appendChild(hlry.p.divIzq);
+    hlry.p.divContenF.appendChild(hlry.p.divDer);
+  },
+
   crearcontrolesHTML: function(){
     //para ejecución en
     hlry.p.varConteVideo = hlry.p.iframeVideo.contentDocument.getElementById('movie_player').getElementsByTagName('video');
@@ -182,19 +211,29 @@ hlry.m = {
     //evento de etiqueta video html5
     hlry.p.varConteVideo[0].onended = hlry.m.siguienteVideo;
 
-
     hlry.p.divReproductor = document.createElement('div');
     hlry.p.divReproductor.setAttribute('id', 'divReproductor');
     hlry.p.divReproductor.style.display = 'block';
+    hlry.p.divReproductor.style.paddingLeft = '5px';
 
     hlry.p.divSiguiente = document.createElement('div');
-    hlry.p.divSiguiente.style.marginBottom = '5px';
-
+    //hlry.p.divSiguiente.style.marginBottom = '5px';
     hlry.p.btnSiguiente = document.createElement('button');
     hlry.p.btnSiguiente.setAttribute('id', 'btnSiguiente');
-    hlry.p.btnSiguiente.innerHTML = 'Siguiente';
+    hlry.p.btnSiguiente.innerHTML = '>>';
+    hlry.p.btnSiguiente.float = 'left';
     hlry.p.btnSiguiente.addEventListener('click', hlry.m.siguienteVideo);
+    hlry.p.btnQuitar = document.createElement('button');
+    hlry.p.btnQuitar.setAttribute('id', 'btnQuitar');
+    hlry.p.btnQuitar.innerHTML = 'X';
+    hlry.p.btnQuitar.addEventListener('click', hlry.m.quitarActual);
+    hlry.p.btnQuitar.float = 'right';
+
     hlry.p.divSiguiente.appendChild(hlry.p.btnSiguiente);
+    hlry.p.divSiguiente.appendChild(hlry.p.btnQuitar);
+    hlry.m.crearDivFila();
+    hlry.p.divDer.appendChild(hlry.p.divSiguiente);
+    hlry.p.divReproductor.appendChild(hlry.p.divContenF);
 
     hlry.p.divURL = document.createElement('div');
     hlry.p.divURL.style.marginBottom = '5px';
@@ -203,8 +242,12 @@ hlry.m = {
     hlry.p.lblURLV.innerHTML = 'URL Video: ';
     hlry.p.txtUrlVideoYoutube = document.createElement('input');
     hlry.p.txtUrlVideoYoutube.setAttribute('id', 'txtUrlVideoYoutube');
-    hlry.p.divURL.appendChild(hlry.p.lblURLV);
-    hlry.p.divURL.appendChild(hlry.p.txtUrlVideoYoutube);
+    //hlry.p.divURL.appendChild(hlry.p.lblURLV);
+    //hlry.p.divURL.appendChild(hlry.p.txtUrlVideoYoutube);
+    hlry.m.crearDivFila();
+    hlry.p.divIzq.appendChild(hlry.p.lblURLV);
+    hlry.p.divDer.appendChild(hlry.p.txtUrlVideoYoutube);
+    hlry.p.divReproductor.appendChild(hlry.p.divContenF);
 
     hlry.p.divCola = document.createElement('div');
     hlry.p.divCola.style.marginBottom = '5px';
@@ -218,12 +261,19 @@ hlry.m = {
     // btnCola.addEventListener('onclick', hlry.m.agregarVideoAlFinal("'"+txtUrlVideoYoutube.value+"'"));
     hlry.p.btnJDespues.addEventListener('click', hlry.m.agregarVideoDespues2);
     hlry.p.btnCola.addEventListener('click', hlry.m.agregarVideoAlFinal2);
-    hlry.p.divCola.appendChild(hlry.p.btnJDespues);
-    hlry.p.divCola.appendChild(hlry.p.btnCola);
+    // hlry.p.divCola.appendChild(hlry.p.btnJDespues);
+    // hlry.p.divCola.appendChild(hlry.p.btnCola);
+    hlry.m.crearDivFila();
+    hlry.p.divIzq.innerHTML = "Agregar:";
+    hlry.p.divDer.appendChild(hlry.p.btnJDespues);
+    hlry.p.divDer.appendChild(hlry.p.btnCola);
+    hlry.p.divReproductor.appendChild(hlry.p.divContenF);
 
-    hlry.p.divReproductor.appendChild(hlry.p.divSiguiente);
-    hlry.p.divReproductor.appendChild(hlry.p.divURL);
-    hlry.p.divReproductor.appendChild(hlry.p.divCola);
+
+
+    // hlry.p.divReproductor.appendChild(hlry.p.divSiguiente);
+    // hlry.p.divReproductor.appendChild(hlry.p.divURL);
+    // hlry.p.divReproductor.appendChild(hlry.p.divCola);
 
     hlry.p.appYT = document.getElementsByTagName('ytd-app')[0];
     hlry.p.appYT.style.position = 'inherit';
