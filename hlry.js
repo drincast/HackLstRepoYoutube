@@ -47,7 +47,7 @@ varConteVideo[0].onended = SiguienteVideo;
 
 //listas de videos
 //salsa
-["scC8I9xl4eg", "cgXGhyGwMFc", "7z2SULKMdiQ", "JfoIqtyCnCU", "7KxkMLAZlzw", "J1--Eg5DPRo", "arWvQNcLKqs", "A3uIUXMJ1xc", "KS9xeYh-HWk", "XiEoCGjwN08", "r4WWa5j-NJk", "WI0Ikrs3E_k", "ZChfr2rhQEg", "q9SqG4XX8ZU", "7vuYeJ1gSSE", "x6EGixAn7Lk", "3H2rE2i_fL4", "0wWRdgEw1I0", "XixGgMfaJck", "RGqQXW_qblg", "1ZguRilbRjA", "83h-cjtfTgE", "coW-lY_uHWM", "QkZscosb6mM", "hd0cl2d2ziU", "Njkg2ubUaug", "fciL4yULkns", "k4ZYi0DbpTY", "JfoIqtyCnCU", "AYc8SC5nnNA", "wU52X9duq6U", "cEz2J24LLUw", "j_CfZK8FPqY", "BUCtau7a7Ak", "_EQIyt5-z0I", "C5ihFyxaUMo", "v2zARXKRHVg", "DZtGjOqqlbE", "SYMx8kT4c7U", "ket82fTGQpg", "0ykUIOdmkj8", "PDUYfpDhD40", "QBuueYkmYVI", "4YAoWksQhw4", "OvQArMzHt90", "PdoNzV19vng", "hQdN437xMHg", "tY9oa_1rZsw"]
+["7HmG_XZYtZg", "jo9i8I83HIw", "XIoUz-nEu0g", "ZChfr2rhQEg", "q9SqG4XX8ZU", "7vuYeJ1gSSE", "x6EGixAn7Lk", "3H2rE2i_fL4", "0wWRdgEw1I0", "XixGgMfaJck", "RGqQXW_qblg", "1ZguRilbRjA", "83h-cjtfTgE", "coW-lY_uHWM", "QkZscosb6mM", "hd0cl2d2ziU", "Njkg2ubUaug", "fciL4yULkns", "k4ZYi0DbpTY", "JfoIqtyCnCU", "AYc8SC5nnNA", "wU52X9duq6U", "cEz2J24LLUw", "j_CfZK8FPqY", "BUCtau7a7Ak", "_EQIyt5-z0I", "C5ihFyxaUMo", "v2zARXKRHVg", "DZtGjOqqlbE", "SYMx8kT4c7U", "ket82fTGQpg", "0ykUIOdmkj8", "PDUYfpDhD40", "QBuueYkmYVI", "4YAoWksQhw4", "OvQArMzHt90", "PdoNzV19vng", "hQdN437xMHg", "tY9oa_1rZsw", "scC8I9xl4eg", "7z2SULKMdiQ", "JfoIqtyCnCU", "7KxkMLAZlzw", "q9SqG4XX8ZU", "PqmLPeL8aj4", "H0vU9mtxZ98", "FKKl24q73vI", "EhM6qKx-ECI", "uN0rmmreopE", "J1--Eg5DPRo", "arWvQNcLKqs", "A3uIUXMJ1xc", "KS9xeYh-HWk", "XiEoCGjwN08", "r4WWa5j-NJk", "WI0Ikrs3E_k", "6nFpUWeyDUc", "e0DWx8kG-4o", "i4PA7rvpvhk"]
 
 //rock
 ["EU0LljxpHIk", "fnD0MKzq6QI", "6NXnxTNIWkc", "75_slEkywpY", "hSylsKEKGCo", "z_NJhmtQWAs", "PUzWDf9S9Rk", "JAU88rTbPGg", "fciL4yULkns", "r2g0pM3PMNQ", "1w7OgIMMRc4", "l9kXym1doYA", "twEGSGpLiyc", "YbK00KvsNAE", "re1btP_rGys", "7QU1nvuxaMA"]
@@ -144,6 +144,17 @@ hlry.m = {
       console.log(txtUrlVideoYoutube.value);
       txtUrlVideoYoutube.value = txtUrlVideoYoutube.value.replace(hlry.p.urlPpal, '');
       hlry.p.lstVideos.push(txtUrlVideoYoutube.value);
+      txtUrlVideoYoutube.value = "";
+    }
+  },
+
+  agregarRandom: function(){
+    if(txtUrlVideoYoutube.value !== ""){
+      var cantidad = hlry.p.lstVideos.length;
+      var posicion = Math.floor((Math.random() * (cantidad - 3)) + 3);
+      console.log("en: ", posicion, txtUrlVideoYoutube.value);
+      txtUrlVideoYoutube.value = txtUrlVideoYoutube.value.replace(hlry.p.urlPpal, '');
+      hlry.p.lstVideos.splice(posicion, 0, txtUrlVideoYoutube.value);
       txtUrlVideoYoutube.value = "";
     }
   },
@@ -253,20 +264,25 @@ hlry.m = {
     hlry.p.divCola.style.marginBottom = '5px';
     hlry.p.btnJDespues = document.createElement('button');
     hlry.p.btnCola = document.createElement('button');
+    hlry.p.btnRandom = document.createElement('button');
     hlry.p.btnJDespues.setAttribute('id', 'btnJDespues');
     hlry.p.btnCola.setAttribute('id', 'btnCola');
+    hlry.p.btnRandom.setAttribute('id', 'btnRandom');
     hlry.p.btnJDespues.innerHTML = 'justo despues';
     hlry.p.btnCola.innerHTML = 'al final';
+    hlry.p.btnRandom.innerHTML = 'Aleatorio';
     // btnJDespues.addEventListener('onclick', hlry.m.agregarVideoDespues("'"+txtUrlVideoYoutube.value+"'"));
     // btnCola.addEventListener('onclick', hlry.m.agregarVideoAlFinal("'"+txtUrlVideoYoutube.value+"'"));
     hlry.p.btnJDespues.addEventListener('click', hlry.m.agregarVideoDespues2);
     hlry.p.btnCola.addEventListener('click', hlry.m.agregarVideoAlFinal2);
+    hlry.p.btnRandom.addEventListener('click', hlry.m.agregarRandom);
     // hlry.p.divCola.appendChild(hlry.p.btnJDespues);
     // hlry.p.divCola.appendChild(hlry.p.btnCola);
     hlry.m.crearDivFila();
     hlry.p.divIzq.innerHTML = "Agregar:";
     hlry.p.divDer.appendChild(hlry.p.btnJDespues);
     hlry.p.divDer.appendChild(hlry.p.btnCola);
+    hlry.p.divDer.appendChild(hlry.p.btnRandom);
     hlry.p.divReproductor.appendChild(hlry.p.divContenF);
 
 
