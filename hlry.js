@@ -5,72 +5,13 @@
   2018-01-04
 */
 
-// primero ejecutar lo siguiente hatas el comentario [FIN 1]
-//la variable lstVideos es el array donde se agregara la lista de videos
-//var lstVideos = ['nada', 'https://www.youtube.com/watch?v=kkx-7fsiWgg', 'https://www.youtube.com/watch?v=YG2p6XBuSKA', 'https://www.youtube.com/watch?v=CRN75ev73JY'];
-var nodo = document.getElementById('content');
-var nodoPadre = nodo.parentNode;
-var iframeVideo = document.createElement('iframe');
-iframeVideo.setAttribute('id', 'iframeVideoX');
-iframeVideo.setAttribute('style', 'width:100%; height: 800px');
-iframeVideo.setAttribute('src', 'https://www.youtube.com/watch?v=fciL4yULkns'); //la url puede ser cualquiera de un video de youtube
-// FIN 1
-
-// ejecutar de segunto lo siguiente hasta el comentario [FIN 2]
-//nodo.parentNode.children.content
-nodo.parentNode.removeChild(nodo);
-nodoPadre.appendChild(iframeVideo);
-// FIN 2
-
-//Ejecutar lo siguiente hasta el comentario [FIN 3]
-var varConteVideo = iframeVideo.contentDocument.getElementById('movie_player').getElementsByTagName('video');
-
-function ActulizarNodoVideo(){
-  varConteVideo = iframeVideo.contentDocument.getElementById('movie_player').getElementsByTagName('video');
-  varConteVideo[0].onended = SiguienteVideo;
-}
-
-function SiguienteVideo(){
-  lstVideos.shift();
-  iframeVideo.setAttribute('src', lstVideos[0]);
-  setTimeout(ActulizarNodoVideo, 7000);
-}
-varConteVideo[0].onended = SiguienteVideo;
-// FIN 3
-
-
-
-
-
 /************************************************************************************************************/
 //VERSIÓN CON CLASE PARA EL MANEJO DE LA LISTA DE REPRODUCCIÓN
 
-//listas de videos
-//salsa
-["UKBlYmqDf4I", "HRt8Ho_eyEM", "1j3QHyBOyhg", "0wWRdgEw1I0", "XixGgMfaJck", "RGqQXW_qblg", "1ZguRilbRjA", "83h-cjtfTgE", "coW-lY_uHWM", "QkZscosb6mM", "hd0cl2d2ziU", "Njkg2ubUaug", "fciL4yULkns", "k4ZYi0DbpTY", "JfoIqtyCnCU", "AYc8SC5nnNA", "wU52X9duq6U", "cEz2J24LLUw", "j_CfZK8FPqY", "BUCtau7a7Ak", "_EQIyt5-z0I", "C5ihFyxaUMo", "KU4LpLKwez4", "v2zARXKRHVg", "DZtGjOqqlbE", "SYMx8kT4c7U", "ket82fTGQpg", "0ykUIOdmkj8", "PDUYfpDhD40", "5eQamJHEue8", "QBuueYkmYVI", "4YAoWksQhw4", "OvQArMzHt90", "PdoNzV19vng", "7DikmNa_gg0", "hQdN437xMHg", "tY9oa_1rZsw", "scC8I9xl4eg", "7z2SULKMdiQ", "JfoIqtyCnCU", "7KxkMLAZlzw", "q9SqG4XX8ZU", "PqmLPeL8aj4", "H0vU9mtxZ98", "FKKl24q73vI", "EhM6qKx-ECI", "uN0rmmreopE", "J1--Eg5DPRo", "arWvQNcLKqs", "A3uIUXMJ1xc", "KS9xeYh-HWk", "XiEoCGjwN08", "r4WWa5j-NJk", "WI0Ikrs3E_k", "6nFpUWeyDUc", "e0DWx8kG-4o", "i4PA7rvpvhk", "7HmG_XZYtZg", "jo9i8I83HIw", "XIoUz-nEu0g", "ZChfr2rhQEg", "q9SqG4XX8ZU", "7vuYeJ1gSSE", "x6EGixAn7Lk", "J1--Eg5DPRo", "FEWDArMv6GU", "3H2rE2i_fL4"]
-
-//rock
-["EU0LljxpHIk", "fnD0MKzq6QI", "6NXnxTNIWkc", "75_slEkywpY", "hSylsKEKGCo", "z_NJhmtQWAs", "PUzWDf9S9Rk", "JAU88rTbPGg", "fciL4yULkns", "r2g0pM3PMNQ", "1w7OgIMMRc4", "l9kXym1doYA", "twEGSGpLiyc", "YbK00KvsNAE", "re1btP_rGys", "7QU1nvuxaMA"]
-
-//electro
-["JRfuAukYTKg", "N9hazmsUxrM", "gCYcHz2k5x0", "JwQZQygg3Lk", "PVzljDmoPVs", "ALZHF5UqnU4", "_ovdm2yX4MA", "hWjrMTWXH28", "EVr__5Addjw", "jUe8uoKdHao", "mIIN_SGQy9c", "ebXbLfLACGM", "hHUbLv4ThOo", "IcrbM1l_BoI", "u0pmV7GoTjc", "NUVCQXMUVnI", "EPo5wWmKEaI", "u9LH_y159sg", "YxIiPLVR6NA", "5jlI4uzZGjU", "TSNerxNwWtU", "nYh-n7EOtMA", "cHHLHGNpCSA", "HJb0VYVtaNc", "BR_DFMUzX4E", "b4Bj7Zb-YD4", "fciL4yULkns", "5dbEhBKGOtY"]
-
-//varios
-["7zp1TbLFPp8", "kXYiU_JCYtU", "GurkREc-q4I", "H2jCbXiEQI4", "6dW6aNAZGTM", "p-Z3YrHJ1sU", "RYnFIRc0k6E", "mIIN_SGQy9c", "m3fx4LUBSrM", "gmc4tkVJow8", "EPo5wWmKEaI", "E3zxvWvxDjQ", "mcGBVy3-W4s", "2up_Eq6r6Ko", "9J9FlVCUeLM", "5jlI4uzZGjU", "EVr__5Addjw", "j0lSpNtjPM8", "S5FCdx7Dn0o", "cHHLHGNpCSA", "EH6myRjE848", "jzy2dgEUOhY", "CdXesX6mYUE", "5ZF5m-vmDzM", "jRGrNDV2mKc", "7iNbnineUCI", "0pPXOq87atY", "VqEbCxg2bNI", "_i2EwTKRmsU", "920jLVQOLFI", "YbK00KvsNAE", "SHq2qrFUlGY", "0S3foICf5uI", "OxxggwHFj7M", "_I00wIWw7FQ", "RIUy6aCqUMw", "jnDjEHyhFpU", "CHekNnySAfM", "fciL4yULkns", "YG2p6XBuSKA", "SmM0653YvXU", "5dbEhBKGOtY"]
-
-//piano
-["JbjzPKTfjlc", "rExcQ5nm_yU", "Pm1a7VzISK4", "pL0bxewHbjo", "2W_G3xmSGfo", "W_0GdB4oD6s", "4I_NYya-WWg", "GdU6snztM0A", "eHwR9kTIMeI", "NvryolGa19A", "kcihcYEOeic", "fciL4yULkns"]
-
-
-//lista rock español
-["UJqcH0my0mY", "uvVNoP6U1OQ", "50jlKbvk9O0", "slctnzJ2dzA", "yh8S4Blnd6M", "Ru24puGqKuM", "hSylsKEKGCo", "uZ3x0I5lIGo", "_R-l7KYx9sM", "HIppnw4wt7Q", "fnD0MKzq6QI", "hbiQn4-1qv8", "PUzWDf9S9Rk", "R7s6rZuuff8", "guHN79sQ3gk", "Kdp4KAyO2Zo", "BESD2Oo2PrQ", "iQiQYbTA0sw", "wL2012Q3h3M", "CJcr4Yg9DMA", "EU0LljxpHIk", "75_slEkywpY", "YbK00KvsNAE", "zABYI-f7wkE", "lEa1F3wyuho", "re1btP_rGys", "AruE3oCxF70", "5k-QLyo9Hoc"]
-
-
-https://www.youtube.com/watch?v=y9uqsn33MS4
-
 //---------------------------------------------------------
-//guia: copiar el código acontinuación y copiarlo en la consola del browser
-//luego Ejecutar la siguiente lines
+//guia: copiar el código desde el comentario CODIGO INICIO hasta el comentario CODIGO final,
+//luego copiarlo en la consola del browser
+//luego Ejecutar la siguiente lineas
 //
 //hlry.m.iniciar()
 //luego ejecutar la siguiente linea
@@ -79,6 +20,7 @@ https://www.youtube.com/watch?v=y9uqsn33MS4
 //cambiar al siguiente video, y agregar nuevos videos a la lista
 
 
+//CODIGO INICIO
 //Se inicia creación de clase/objeto que maneje la reproducción
 hlry = {};
 //para el manejo de las propiedades
@@ -308,3 +250,27 @@ hlry.m = {
     return array;
   }
 };
+//CODIGO FIN
+
+//listas de videos
+//salsa
+["UKBlYmqDf4I", "HRt8Ho_eyEM", "1j3QHyBOyhg", "0wWRdgEw1I0", "XixGgMfaJck", "RGqQXW_qblg", "1ZguRilbRjA", "83h-cjtfTgE", "coW-lY_uHWM", "QkZscosb6mM", "hd0cl2d2ziU", "Njkg2ubUaug", "fciL4yULkns", "k4ZYi0DbpTY", "JfoIqtyCnCU", "AYc8SC5nnNA", "wU52X9duq6U", "cEz2J24LLUw", "j_CfZK8FPqY", "BUCtau7a7Ak", "_EQIyt5-z0I", "C5ihFyxaUMo", "KU4LpLKwez4", "v2zARXKRHVg", "DZtGjOqqlbE", "SYMx8kT4c7U", "ket82fTGQpg", "0ykUIOdmkj8", "PDUYfpDhD40", "5eQamJHEue8", "QBuueYkmYVI", "4YAoWksQhw4", "OvQArMzHt90", "PdoNzV19vng", "7DikmNa_gg0", "hQdN437xMHg", "tY9oa_1rZsw", "scC8I9xl4eg", "7z2SULKMdiQ", "JfoIqtyCnCU", "7KxkMLAZlzw", "q9SqG4XX8ZU", "PqmLPeL8aj4", "H0vU9mtxZ98", "FKKl24q73vI", "EhM6qKx-ECI", "uN0rmmreopE", "J1--Eg5DPRo", "arWvQNcLKqs", "A3uIUXMJ1xc", "KS9xeYh-HWk", "XiEoCGjwN08", "r4WWa5j-NJk", "WI0Ikrs3E_k", "6nFpUWeyDUc", "e0DWx8kG-4o", "i4PA7rvpvhk", "7HmG_XZYtZg", "jo9i8I83HIw", "XIoUz-nEu0g", "ZChfr2rhQEg", "q9SqG4XX8ZU", "7vuYeJ1gSSE", "x6EGixAn7Lk", "J1--Eg5DPRo", "FEWDArMv6GU", "3H2rE2i_fL4"]
+
+//rock
+["EU0LljxpHIk", "fnD0MKzq6QI", "6NXnxTNIWkc", "75_slEkywpY", "hSylsKEKGCo", "z_NJhmtQWAs", "PUzWDf9S9Rk", "JAU88rTbPGg", "fciL4yULkns", "r2g0pM3PMNQ", "1w7OgIMMRc4", "l9kXym1doYA", "twEGSGpLiyc", "YbK00KvsNAE", "re1btP_rGys", "7QU1nvuxaMA"]
+
+//electro
+["JRfuAukYTKg", "N9hazmsUxrM", "gCYcHz2k5x0", "JwQZQygg3Lk", "PVzljDmoPVs", "ALZHF5UqnU4", "_ovdm2yX4MA", "hWjrMTWXH28", "EVr__5Addjw", "jUe8uoKdHao", "mIIN_SGQy9c", "ebXbLfLACGM", "hHUbLv4ThOo", "IcrbM1l_BoI", "u0pmV7GoTjc", "NUVCQXMUVnI", "EPo5wWmKEaI", "u9LH_y159sg", "YxIiPLVR6NA", "5jlI4uzZGjU", "TSNerxNwWtU", "nYh-n7EOtMA", "cHHLHGNpCSA", "HJb0VYVtaNc", "BR_DFMUzX4E", "b4Bj7Zb-YD4", "fciL4yULkns", "5dbEhBKGOtY"]
+
+//varios
+["7zp1TbLFPp8", "kXYiU_JCYtU", "GurkREc-q4I", "H2jCbXiEQI4", "6dW6aNAZGTM", "p-Z3YrHJ1sU", "RYnFIRc0k6E", "mIIN_SGQy9c", "m3fx4LUBSrM", "gmc4tkVJow8", "EPo5wWmKEaI", "E3zxvWvxDjQ", "mcGBVy3-W4s", "2up_Eq6r6Ko", "9J9FlVCUeLM", "5jlI4uzZGjU", "EVr__5Addjw", "j0lSpNtjPM8", "S5FCdx7Dn0o", "cHHLHGNpCSA", "EH6myRjE848", "jzy2dgEUOhY", "CdXesX6mYUE", "5ZF5m-vmDzM", "jRGrNDV2mKc", "7iNbnineUCI", "0pPXOq87atY", "VqEbCxg2bNI", "_i2EwTKRmsU", "920jLVQOLFI", "YbK00KvsNAE", "SHq2qrFUlGY", "0S3foICf5uI", "OxxggwHFj7M", "_I00wIWw7FQ", "RIUy6aCqUMw", "jnDjEHyhFpU", "CHekNnySAfM", "fciL4yULkns", "YG2p6XBuSKA", "SmM0653YvXU", "5dbEhBKGOtY"]
+
+//piano
+["JbjzPKTfjlc", "rExcQ5nm_yU", "Pm1a7VzISK4", "pL0bxewHbjo", "2W_G3xmSGfo", "W_0GdB4oD6s", "4I_NYya-WWg", "GdU6snztM0A", "eHwR9kTIMeI", "NvryolGa19A", "kcihcYEOeic", "fciL4yULkns"]
+
+
+//lista rock español
+["UJqcH0my0mY", "uvVNoP6U1OQ", "50jlKbvk9O0", "slctnzJ2dzA", "yh8S4Blnd6M", "Ru24puGqKuM", "hSylsKEKGCo", "uZ3x0I5lIGo", "_R-l7KYx9sM", "HIppnw4wt7Q", "fnD0MKzq6QI", "hbiQn4-1qv8", "PUzWDf9S9Rk", "R7s6rZuuff8", "guHN79sQ3gk", "Kdp4KAyO2Zo", "BESD2Oo2PrQ", "iQiQYbTA0sw", "wL2012Q3h3M", "CJcr4Yg9DMA", "EU0LljxpHIk", "75_slEkywpY", "YbK00KvsNAE", "zABYI-f7wkE", "lEa1F3wyuho", "re1btP_rGys", "AruE3oCxF70", "5k-QLyo9Hoc"]
+
+
+///https://www.youtube.com/watch?v=y9uqsn33MS4
