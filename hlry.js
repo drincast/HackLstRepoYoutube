@@ -28,19 +28,25 @@ hlry.p = {
   lstVideos: [],
   urlPpal: "https://www.youtube.com/watch?v=",
   indiceVideoActual: 0,
+};
+//parametros para etiquetas html
+hlry.pHTML = {
   nodo: null,
   nodoPadre: null,
   iframeVideo: null,
   varConteVideo: null,
-
-  //controles html
+  divPpal: null,
   divReproductor: null,
+  divMensajes: null,
+
+  //ctrls de divReproductor
   divContenF: null,
   divIzq: null,
   divDer: null,
   divSiguiente: null,
   btnSiguiente: null,
-  btnQuitar: null,
+  btnQuitarAct: null,
+  btnQuitarUlt: null,
   divURL: null,
   lblURLV: null,
   txtUrlVideoYoutube: null,
@@ -48,6 +54,9 @@ hlry.p = {
   btnJDespues: null,
   btnCola: null,
   appYT: null,
+
+  //ctrls de divMensaje
+  divMsj: null,
 };
 //para el manejo de los métodos
 hlry.m = {
@@ -74,7 +83,8 @@ hlry.m = {
 
   agregarVideoDespues2: function(){
     if(txtUrlVideoYoutube.value !== ""){
-      console.log(txtUrlVideoYoutube.value);
+      //console.log(txtUrlVideoYoutube.value);
+      hlry.pHTML.divMsj.innerHTML = "se agrego despues: " + txtUrlVideoYoutube.value;
       txtUrlVideoYoutube.value = txtUrlVideoYoutube.value.replace(hlry.p.urlPpal, '');
       hlry.p.lstVideos.splice(1, 0, txtUrlVideoYoutube.value);
       txtUrlVideoYoutube.value = "";
@@ -83,7 +93,8 @@ hlry.m = {
 
   agregarVideoAlFinal2: function(){
     if(txtUrlVideoYoutube.value !== ""){
-      console.log(txtUrlVideoYoutube.value);
+      //console.log(txtUrlVideoYoutube.value);
+      hlry.pHTML.divMsj.innerHTML = "se agrego al final: " + txtUrlVideoYoutube.value;
       txtUrlVideoYoutube.value = txtUrlVideoYoutube.value.replace(hlry.p.urlPpal, '');
       hlry.p.lstVideos.push(txtUrlVideoYoutube.value);
       txtUrlVideoYoutube.value = "";
@@ -94,7 +105,8 @@ hlry.m = {
     if(txtUrlVideoYoutube.value !== ""){
       var cantidad = hlry.p.lstVideos.length;
       var posicion = Math.floor((Math.random() * (cantidad - 3)) + 3);
-      console.log("en: ", posicion, txtUrlVideoYoutube.value);
+      //console.log("en: ", posicion, txtUrlVideoYoutube.value);
+      hlry.pHTML.divMsj.innerHTML = "se agrego en: " + posicion + " - " + txtUrlVideoYoutube.value;
       txtUrlVideoYoutube.value = txtUrlVideoYoutube.value.replace(hlry.p.urlPpal, '');
       hlry.p.lstVideos.splice(posicion, 0, txtUrlVideoYoutube.value);
       txtUrlVideoYoutube.value = "";
@@ -107,7 +119,17 @@ hlry.m = {
 
   quitarActual: function(){
     if(hlry.p.lstVideos.length > 0){
+      hlry.pHTML.divMsj.innerHTML = "se elimino actual: " + hlry.p.lstVideos[0];
       hlry.p.lstVideos.shift();
+    }
+    else{
+      alert("!es el ultimo¡, no se puede elimar");
+    }
+  },
+
+  quitarUltimo: function(){
+    if(hlry.p.lstVideos.length > 0){
+      hlry.p.lstVideos.pop();
     }
     else{
       alert("!es el ultimo¡, no se puede elimar");
@@ -124,11 +146,13 @@ hlry.m = {
     hlry.p.lstVideos.push(hlry.p.lstVideos[0]);
     hlry.p.lstVideos.shift();
     url = hlry.p.urlPpal + hlry.p.lstVideos[0];
-    hlry.p.iframeVideo.setAttribute('src', url);
+    hlry.pHTML.iframeVideo.setAttribute('src', url);
+
+    hlry.pHTML.divMsj.innerHTML = "sonando: " + url;
     setTimeout(hlry.m.actulizarNodoVideo, 7000);
   },
 
-  iniciar: function(){
+  iniciarXX: function(){
     hlry.p.nodo = document.getElementById('content');
     hlry.p.nodoPadre = hlry.p.nodo.parentNode;
     hlry.p.iframeVideo = document.createElement('iframe');
@@ -141,7 +165,170 @@ hlry.m = {
     hlry.p.nodoPadre.appendChild(hlry.p.iframeVideo);
   },
 
+  iniciar: function(){
+    hlry.pHTML.nodo = document.getElementById('content');
+    hlry.pHTML.nodoPadre = hlry.pHTML.nodo.parentNode;
+    hlry.pHTML.iframeVideo = document.createElement('iframe');
+    hlry.pHTML.iframeVideo.setAttribute('id', 'iframeVideoX');
+    hlry.pHTML.iframeVideo.setAttribute('style', 'width:100%; height: 800px');
+    hlry.pHTML.iframeVideo.setAttribute('src', 'https://www.youtube.com/watch?v=fciL4yULkns'); //la url puede ser cualquiera de un video de youtube
+
+    //ejecuta la carga del iframe con la url del video
+    hlry.pHTML.nodo.parentNode.removeChild(hlry.pHTML.nodo);
+    hlry.pHTML.nodoPadre.appendChild(hlry.pHTML.iframeVideo);
+  },
+
+  crearDivPpls: function(){
+    hlry.pHTML.divPpal = document.createElement('div');
+    hlry.pHTML.divPpal.setAttribute('id', 'divPpal');
+    hlry.pHTML.divPpal.style.display = 'block';
+
+    hlry.pHTML.divReproductor = document.createElement('div');
+    hlry.pHTML.divReproductor.setAttribute('id', 'divReproductor');
+    hlry.pHTML.divReproductor.style.width = '375px';
+    hlry.pHTML.divReproductor.style.display = 'inline-block';
+    hlry.pHTML.divReproductor.style.marginBottom = '5px';
+
+    hlry.pHTML.divMensajes = document.createElement('div');
+    hlry.pHTML.divMensajes.setAttribute('id', 'divMensajes');
+    hlry.pHTML.divMensajes.style.display = 'inline-block';
+    hlry.pHTML.divPpal.appendChild(hlry.pHTML.divReproductor);
+    hlry.pHTML.divPpal.appendChild(hlry.pHTML.divMensajes);
+  },
+
+  crearCtrlDivReproductor: function(){
+    hlry.pHTML.divIzq = document.createElement('div');
+    hlry.pHTML.divDer = document.createElement('div');
+    hlry.pHTML.divIzq.style.width = '70px';
+    hlry.pHTML.divDer.style.width = '300px';
+    hlry.pHTML.divIzq.style.display = 'inline-block';
+    hlry.pHTML.divIzq.style.marginRight = '5px';
+    hlry.pHTML.divIzq.style.textAlign = 'right';
+    hlry.pHTML.divDer.style.display = 'inline-block';
+
+    hlry.pHTML.divReproductor.appendChild(hlry.p.divIzq);
+    hlry.pHTML.divReproductor.appendChild(hlry.p.divDer);
+  },
+
   crearDivFila: function(){
+    hlry.pHTML.divContenF = document.createElement('div');
+    hlry.pHTML.divIzq = document.createElement('div');
+    hlry.pHTML.divDer = document.createElement('div');
+    hlry.pHTML.divIzq.style.width = '70px';
+    hlry.pHTML.divDer.style.width = '300px';
+    hlry.pHTML.divIzq.style.display = 'inline-block';
+    hlry.pHTML.divIzq.style.marginRight = '5px';
+    hlry.pHTML.divIzq.style.textAlign = 'right';
+    hlry.pHTML.divDer.style.display = 'inline-block';
+    hlry.pHTML.divContenF.style.display = 'block';
+    hlry.pHTML.divContenF.style.marginBottom = '5px';
+    hlry.pHTML.divContenF.appendChild(hlry.pHTML.divIzq);
+    hlry.pHTML.divContenF.appendChild(hlry.pHTML.divDer);
+  },
+
+
+
+  crearCtrlDivMensajes: function(){
+    hlry.pHTML.divMsj = document.createElement('div');
+    hlry.pHTML.divMensajes.appendChild(hlry.pHTML.divMsj);
+  },
+
+  crearControlesHTML: function(){
+    //para ejecución en
+    hlry.pHTML.varConteVideo = hlry.pHTML.iframeVideo.contentDocument.getElementById('movie_player').getElementsByTagName('video');
+
+    //evento de etiqueta video html5
+    hlry.pHTML.varConteVideo[0].onended = hlry.m.siguienteVideo;
+
+    hlry.m.crearDivPpls();
+
+    hlry.pHTML.divSiguiente = document.createElement('div');
+
+    hlry.pHTML.btnSiguiente = document.createElement('button');
+    hlry.pHTML.btnSiguiente.setAttribute('id', 'btnSiguiente');
+    hlry.pHTML.btnSiguiente.innerHTML = '>>';
+    hlry.pHTML.btnSiguiente.float = 'left';
+    hlry.pHTML.btnSiguiente.addEventListener('click', hlry.m.siguienteVideo);
+
+    hlry.pHTML.btnQuitarAct = document.createElement('button');
+    hlry.pHTML.btnQuitarAct.setAttribute('id', 'btnQuitarAct');
+    hlry.pHTML.btnQuitarAct.innerHTML = 'XA';
+    hlry.pHTML.btnQuitarAct.addEventListener('click', hlry.m.quitarActual);
+    hlry.pHTML.btnQuitarAct.float = 'right';
+
+    hlry.pHTML.btnQuitarUlt = document.createElement('button');
+    hlry.pHTML.btnQuitarUlt.setAttribute('id', 'btnQuitarUlt');
+    hlry.pHTML.btnQuitarUlt.innerHTML = 'XU';
+    hlry.pHTML.btnQuitarUlt.addEventListener('click', hlry.m.quitarUltimo);
+    hlry.pHTML.btnQuitarUlt.float = 'right';
+
+    hlry.pHTML.divSiguiente.appendChild(hlry.pHTML.btnSiguiente);
+    hlry.pHTML.divSiguiente.appendChild(hlry.pHTML.btnQuitarAct);
+    hlry.pHTML.divSiguiente.appendChild(hlry.pHTML.btnQuitarUlt);
+
+    hlry.m.crearDivFila();
+    //hlry.m.crearCtrlDivReproductor();
+
+    hlry.pHTML.divDer.appendChild(hlry.pHTML.divSiguiente);
+    hlry.pHTML.divReproductor.appendChild(hlry.pHTML.divContenF);
+
+    hlry.pHTML.divURL = document.createElement('div');
+    hlry.pHTML.divURL.style.marginBottom = '5px';
+    hlry.pHTML.lblURLV = document.createElement('label');
+    hlry.pHTML.lblURLV.setAttribute('for', 'txtUrlVideoYoutube');
+    hlry.pHTML.lblURLV.innerHTML = 'URL Video: ';
+    hlry.pHTML.txtUrlVideoYoutube = document.createElement('input');
+    hlry.pHTML.txtUrlVideoYoutube.setAttribute('id', 'txtUrlVideoYoutube');
+    //hlry.pHTML.divURL.appendChild(hlry.pHTML.lblURLV);
+    //hlry.pHTML.divURL.appendChild(hlry.pHTML.txtUrlVideoYoutube);
+    hlry.m.crearDivFila();
+    hlry.pHTML.divIzq.appendChild(hlry.pHTML.lblURLV);
+    hlry.pHTML.divDer.appendChild(hlry.pHTML.txtUrlVideoYoutube);
+    hlry.pHTML.divReproductor.appendChild(hlry.pHTML.divContenF);
+
+    hlry.pHTML.divCola = document.createElement('div');
+    hlry.pHTML.divCola.style.marginBottom = '5px';
+    hlry.pHTML.btnJDespues = document.createElement('button');
+    hlry.pHTML.btnCola = document.createElement('button');
+    hlry.pHTML.btnRandom = document.createElement('button');
+    hlry.pHTML.btnJDespues.setAttribute('id', 'btnJDespues');
+    hlry.pHTML.btnCola.setAttribute('id', 'btnCola');
+    hlry.pHTML.btnRandom.setAttribute('id', 'btnRandom');
+    hlry.pHTML.btnJDespues.innerHTML = 'justo despues';
+    hlry.pHTML.btnCola.innerHTML = 'al final';
+    hlry.pHTML.btnRandom.innerHTML = 'Aleatorio';
+    // btnJDespues.addEventListener('onclick', hlry.m.agregarVideoDespues("'"+txtUrlVideoYoutube.value+"'"));
+    // btnCola.addEventListener('onclick', hlry.m.agregarVideoAlFinal("'"+txtUrlVideoYoutube.value+"'"));
+    hlry.pHTML.btnJDespues.addEventListener('click', hlry.m.agregarVideoDespues2);
+    hlry.pHTML.btnCola.addEventListener('click', hlry.m.agregarVideoAlFinal2);
+    hlry.pHTML.btnRandom.addEventListener('click', hlry.m.agregarRandom);
+    // hlry.pHTML.divCola.appendChild(hlry.pHTML.btnJDespues);
+    // hlry.pHTML.divCola.appendChild(hlry.pHTML.btnCola);
+    hlry.m.crearDivFila();
+    hlry.pHTML.divIzq.innerHTML = "Agregar:";
+    hlry.pHTML.divDer.appendChild(hlry.pHTML.btnJDespues);
+    hlry.pHTML.divDer.appendChild(hlry.pHTML.btnCola);
+    hlry.pHTML.divDer.appendChild(hlry.pHTML.btnRandom);
+    hlry.pHTML.divReproductor.appendChild(hlry.pHTML.divContenF);
+
+    hlry.m.crearCtrlDivMensajes();
+
+    // hlry.pHTML.divReproductor.appendChild(hlry.pHTML.divSiguiente);
+    // hlry.pHTML.divReproductor.appendChild(hlry.pHTML.divURL);
+    // hlry.pHTML.divReproductor.appendChild(hlry.pHTML.divCola);
+
+    hlry.pHTML.appYT = document.getElementsByTagName('ytd-app')[0];
+    hlry.pHTML.appYT.style.position = 'inherit';
+    //var container = document.getElementById('container');
+
+    //document.getElementsByTagName('body')[0].insertBefore(hlry.pHTML.divReproductor, hlry.p.appYT);
+    document.getElementsByTagName('body')[0].insertBefore(hlry.pHTML.divPpal, hlry.pHTML.appYT);
+  },
+
+
+
+
+  crearDivFilaXX: function(){
     hlry.p.divContenF = document.createElement('div');
     hlry.p.divIzq = document.createElement('div');
     hlry.p.divDer = document.createElement('div');
@@ -157,7 +344,7 @@ hlry.m = {
     hlry.p.divContenF.appendChild(hlry.p.divDer);
   },
 
-  crearcontrolesHTML: function(){
+  crearcontrolesHTMLXX: function(){
     //para ejecución en
     hlry.p.varConteVideo = hlry.p.iframeVideo.contentDocument.getElementById('movie_player').getElementsByTagName('video');
 
@@ -176,14 +363,20 @@ hlry.m = {
     hlry.p.btnSiguiente.innerHTML = '>>';
     hlry.p.btnSiguiente.float = 'left';
     hlry.p.btnSiguiente.addEventListener('click', hlry.m.siguienteVideo);
-    hlry.p.btnQuitar = document.createElement('button');
-    hlry.p.btnQuitar.setAttribute('id', 'btnQuitar');
-    hlry.p.btnQuitar.innerHTML = 'X';
-    hlry.p.btnQuitar.addEventListener('click', hlry.m.quitarActual);
-    hlry.p.btnQuitar.float = 'right';
+    hlry.p.btnQuitarAct = document.createElement('button');
+    hlry.p.btnQuitarAct.setAttribute('id', 'btnQuitarAct');
+    hlry.p.btnQuitarAct.innerHTML = 'XA';
+    hlry.p.btnQuitarAct.addEventListener('click', hlry.m.quitarActual);
+    hlry.p.btnQuitarAct.float = 'right';
+    hlry.p.btnQuitarUlt = document.createElement('button');
+    hlry.p.btnQuitarUlt.setAttribute('id', 'btnQuitarUlt');
+    hlry.p.btnQuitarUlt.innerHTML = 'XU';
+    hlry.p.btnQuitarUlt.addEventListener('click', hlry.m.quitarUltimo);
+    hlry.p.btnQuitarUlt.float = 'right';
 
     hlry.p.divSiguiente.appendChild(hlry.p.btnSiguiente);
-    hlry.p.divSiguiente.appendChild(hlry.p.btnQuitar);
+    hlry.p.divSiguiente.appendChild(hlry.p.btnQuitarAct);
+    hlry.p.divSiguiente.appendChild(hlry.p.btnQuitarUlt);
     hlry.m.crearDivFila();
     hlry.p.divDer.appendChild(hlry.p.divSiguiente);
     hlry.p.divReproductor.appendChild(hlry.p.divContenF);
@@ -254,7 +447,7 @@ hlry.m = {
 
 //listas de videos
 //salsa
-["UKBlYmqDf4I", "HRt8Ho_eyEM", "1j3QHyBOyhg", "0wWRdgEw1I0", "XixGgMfaJck", "RGqQXW_qblg", "1ZguRilbRjA", "83h-cjtfTgE", "coW-lY_uHWM", "QkZscosb6mM", "hd0cl2d2ziU", "Njkg2ubUaug", "fciL4yULkns", "k4ZYi0DbpTY", "JfoIqtyCnCU", "AYc8SC5nnNA", "wU52X9duq6U", "cEz2J24LLUw", "j_CfZK8FPqY", "BUCtau7a7Ak", "_EQIyt5-z0I", "C5ihFyxaUMo", "KU4LpLKwez4", "v2zARXKRHVg", "DZtGjOqqlbE", "SYMx8kT4c7U", "ket82fTGQpg", "0ykUIOdmkj8", "PDUYfpDhD40", "5eQamJHEue8", "QBuueYkmYVI", "4YAoWksQhw4", "OvQArMzHt90", "PdoNzV19vng", "7DikmNa_gg0", "hQdN437xMHg", "tY9oa_1rZsw", "scC8I9xl4eg", "7z2SULKMdiQ", "JfoIqtyCnCU", "7KxkMLAZlzw", "q9SqG4XX8ZU", "PqmLPeL8aj4", "H0vU9mtxZ98", "FKKl24q73vI", "EhM6qKx-ECI", "uN0rmmreopE", "J1--Eg5DPRo", "arWvQNcLKqs", "A3uIUXMJ1xc", "KS9xeYh-HWk", "XiEoCGjwN08", "r4WWa5j-NJk", "WI0Ikrs3E_k", "6nFpUWeyDUc", "e0DWx8kG-4o", "i4PA7rvpvhk", "7HmG_XZYtZg", "jo9i8I83HIw", "XIoUz-nEu0g", "ZChfr2rhQEg", "q9SqG4XX8ZU", "7vuYeJ1gSSE", "x6EGixAn7Lk", "J1--Eg5DPRo", "FEWDArMv6GU", "3H2rE2i_fL4"]
+["KU4LpLKwez4", "rGoMd4kBxQY", "k4ZYi0DbpTY", "JfoIqtyCnCU", "NB4x_QqZECw", "AYc8SC5nnNA", "wU52X9duq6U", "cEz2J24LLUw", "oz13wzHmEWM", "j_CfZK8FPqY", "BUCtau7a7Ak", "_EQIyt5-z0I", "C5ihFyxaUMo", "HOEyK-UHXEA", "KU4LpLKwez4", "m5_NNJSpPUM", "v2zARXKRHVg", "DZtGjOqqlbE", "SYMx8kT4c7U", "ket82fTGQpg", "-L-lSzDeZw8", "0ykUIOdmkj8", "bXA1agPWzg0", "PDUYfpDhD40", "5eQamJHEue8", "QBuueYkmYVI", "JcASh0OpWoU", "4YAoWksQhw4", "OvQArMzHt90", "pk7MrZ-_7iQ", "PdoNzV19vng", "7DikmNa_gg0", "hQdN437xMHg", "t15qx9F5bi8", "eqwu2NpbQT8", "xSGXNc8T9S0", "OGWUI-Z8Z4w", "wzY3oHpIMso", "tY9oa_1rZsw", "scC8I9xl4eg", "8vBeHY6yoUg", "7z2SULKMdiQ", "mvX4__COaaY", "JfoIqtyCnCU", "7KxkMLAZlzw", "q9SqG4XX8ZU", "bGizZTJs0Uo", "PqmLPeL8aj4", "H0vU9mtxZ98", "FKKl24q73vI", "akNxndZQ45A", "EhM6qKx-ECI", "uN0rmmreopE", "cQhvoL6vLXo", "J1--Eg5DPRo", "arWvQNcLKqs", "A3uIUXMJ1xc", "KS9xeYh-HWk", "XiEoCGjwN08", "rGoMd4kBxQY", "r4WWa5j-NJk", "WI0Ikrs3E_k", "6nFpUWeyDUc", "V1NiWuosRRM", "e0DWx8kG-4o", "i4PA7rvpvhk", "7HmG_XZYtZg", "jo9i8I83HIw", "XIoUz-nEu0g", "ZChfr2rhQEg", "z1LLPvhpCQE", "q9SqG4XX8ZU", "eu-A5X_x3k4", "yt8_NLgNfQw", "E9iIBCO3vlE", "7vuYeJ1gSSE", "x6EGixAn7Lk", "J1--Eg5DPRo", "FEWDArMv6GU", "3H2rE2i_fL4", "xTHmHHhk3WY", "UKBlYmqDf4I", "PHbvY3WGImE", "hDTkzhvUhwM", "t6j1fuwRGQ4", "VrTkv3vMCvw", "ZBlDF78IGc8", "xJHHMDLqJAA", "zVZHqpgQvlg", "CIcDWHxR-ao", "sqmIOptW8Jo", "OvQArMzHt90", "HRt8Ho_eyEM", "zwUJIgBJhZg", "C5ihFyxaUMo", "JYxIhRYv_nc", "L6GI1r2teW4", "1j3QHyBOyhg", "0wWRdgEw1I0", "LuqGyeJgT6E", "XixGgMfaJck", "RGqQXW_qblg", "1ZguRilbRjA", "ghjFffX25cw", "83h-cjtfTgE", "coW-lY_uHWM", "QkZscosb6mM", "hd0cl2d2ziU", "Njkg2ubUaug", "fciL4yULkns"]
 
 //rock
 ["EU0LljxpHIk", "fnD0MKzq6QI", "6NXnxTNIWkc", "75_slEkywpY", "hSylsKEKGCo", "z_NJhmtQWAs", "PUzWDf9S9Rk", "JAU88rTbPGg", "fciL4yULkns", "r2g0pM3PMNQ", "1w7OgIMMRc4", "l9kXym1doYA", "twEGSGpLiyc", "YbK00KvsNAE", "re1btP_rGys", "7QU1nvuxaMA"]
