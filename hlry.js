@@ -137,8 +137,8 @@ hlry.m = {
   },
 
   actulizarNodoVideo: function(){
-    hlry.p.varConteVideo = hlry.p.iframeVideo.contentDocument.getElementById('movie_player').getElementsByTagName('video');
-    hlry.p.varConteVideo[0].onended = hlry.m.siguienteVideo;
+    hlry.pHTML.varConteVideo = hlry.pHTML.iframeVideo.contentDocument.getElementById('movie_player').getElementsByTagName('video');
+    hlry.pHTML.varConteVideo[0].onended = hlry.m.siguienteVideo;
   },
 
   siguienteVideo: function(){
