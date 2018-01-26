@@ -1,8 +1,9 @@
 /*
   autor: drincastX (https://github.com/drincast)
   Código javascript para simular una lista de reproducción de videos de youtube
-  versión: 0.1
+  versión: 0.1.0.1
   2018-01-04
+  ult mod: 2018-01-25
 */
 
 /************************************************************************************************************/
@@ -15,9 +16,12 @@
 //
 //hlry.m.iniciar()
 //luego ejecutar la siguiente linea
-//hlry.crearcontrolesHTML()
+//hlry.crearControlesHTML()
 //con esto se crean unos controles html al inicio de la pagina, con lo cual, se puede
 //cambiar al siguiente video, y agregar nuevos videos a la lista
+
+//Si desea iniciar con una lista, puede asignarle un valor a la propiedad lstVideos
+//ej hlry.p.lstVideos = ["fciL4yULkns", "hQdN437xMHg", "EU0LljxpHIk", "N9hazmsUxrM"]
 
 
 //CODIGO INICIO
@@ -60,18 +64,6 @@ hlry.pHTML = {
 };
 //para el manejo de los métodos
 hlry.m = {
-  agregarVideoAlFinal: function(url){
-    hlry.p.lstVideos.push(url);
-  },
-
-  agregarVideoAlInicio: function(url){
-    hlry.p.lstVideos.unshift(url);
-  },
-
-  agregarVideoDespues: function(url){
-    hlry.p.lstVideos.splice(1, 0, url);
-  },
-
   agregarVideoAlInicio2: function(){
     if(txtUrlVideoYoutube.value !== ""){
       console.log(txtUrlVideoYoutube.value);
@@ -152,19 +144,6 @@ hlry.m = {
     setTimeout(hlry.m.actulizarNodoVideo, 7000);
   },
 
-  iniciarXX: function(){
-    hlry.p.nodo = document.getElementById('content');
-    hlry.p.nodoPadre = hlry.p.nodo.parentNode;
-    hlry.p.iframeVideo = document.createElement('iframe');
-    hlry.p.iframeVideo.setAttribute('id', 'iframeVideoX');
-    hlry.p.iframeVideo.setAttribute('style', 'width:100%; height: 800px');
-    hlry.p.iframeVideo.setAttribute('src', 'https://www.youtube.com/watch?v=fciL4yULkns'); //la url puede ser cualquiera de un video de youtube
-
-    //ejecuta la carga del iframe con la url del video
-    hlry.p.nodo.parentNode.removeChild(hlry.p.nodo);
-    hlry.p.nodoPadre.appendChild(hlry.p.iframeVideo);
-  },
-
   iniciar: function(){
     hlry.pHTML.nodo = document.getElementById('content');
     hlry.pHTML.nodoPadre = hlry.pHTML.nodo.parentNode;
@@ -225,8 +204,6 @@ hlry.m = {
     hlry.pHTML.divContenF.appendChild(hlry.pHTML.divIzq);
     hlry.pHTML.divContenF.appendChild(hlry.pHTML.divDer);
   },
-
-
 
   crearCtrlDivMensajes: function(){
     hlry.pHTML.divMsj = document.createElement('div');
@@ -325,114 +302,6 @@ hlry.m = {
     document.getElementsByTagName('body')[0].insertBefore(hlry.pHTML.divPpal, hlry.pHTML.appYT);
   },
 
-
-
-
-  crearDivFilaXX: function(){
-    hlry.p.divContenF = document.createElement('div');
-    hlry.p.divIzq = document.createElement('div');
-    hlry.p.divDer = document.createElement('div');
-    hlry.p.divIzq.style.width = '70px';
-    hlry.p.divDer.style.width = '300px';
-    hlry.p.divIzq.style.display = 'inline-block';
-    hlry.p.divIzq.style.marginRight = '5px';
-    hlry.p.divIzq.style.textAlign = 'right';
-    hlry.p.divDer.style.display = 'inline-block';
-    hlry.p.divContenF.style.display = 'block';
-    hlry.p.divContenF.style.marginBottom = '5px';
-    hlry.p.divContenF.appendChild(hlry.p.divIzq);
-    hlry.p.divContenF.appendChild(hlry.p.divDer);
-  },
-
-  crearcontrolesHTMLXX: function(){
-    //para ejecución en
-    hlry.p.varConteVideo = hlry.p.iframeVideo.contentDocument.getElementById('movie_player').getElementsByTagName('video');
-
-    //evento de etiqueta video html5
-    hlry.p.varConteVideo[0].onended = hlry.m.siguienteVideo;
-
-    hlry.p.divReproductor = document.createElement('div');
-    hlry.p.divReproductor.setAttribute('id', 'divReproductor');
-    hlry.p.divReproductor.style.display = 'block';
-    hlry.p.divReproductor.style.paddingLeft = '5px';
-
-    hlry.p.divSiguiente = document.createElement('div');
-    //hlry.p.divSiguiente.style.marginBottom = '5px';
-    hlry.p.btnSiguiente = document.createElement('button');
-    hlry.p.btnSiguiente.setAttribute('id', 'btnSiguiente');
-    hlry.p.btnSiguiente.innerHTML = '>>';
-    hlry.p.btnSiguiente.float = 'left';
-    hlry.p.btnSiguiente.addEventListener('click', hlry.m.siguienteVideo);
-    hlry.p.btnQuitarAct = document.createElement('button');
-    hlry.p.btnQuitarAct.setAttribute('id', 'btnQuitarAct');
-    hlry.p.btnQuitarAct.innerHTML = 'XA';
-    hlry.p.btnQuitarAct.addEventListener('click', hlry.m.quitarActual);
-    hlry.p.btnQuitarAct.float = 'right';
-    hlry.p.btnQuitarUlt = document.createElement('button');
-    hlry.p.btnQuitarUlt.setAttribute('id', 'btnQuitarUlt');
-    hlry.p.btnQuitarUlt.innerHTML = 'XU';
-    hlry.p.btnQuitarUlt.addEventListener('click', hlry.m.quitarUltimo);
-    hlry.p.btnQuitarUlt.float = 'right';
-
-    hlry.p.divSiguiente.appendChild(hlry.p.btnSiguiente);
-    hlry.p.divSiguiente.appendChild(hlry.p.btnQuitarAct);
-    hlry.p.divSiguiente.appendChild(hlry.p.btnQuitarUlt);
-    hlry.m.crearDivFila();
-    hlry.p.divDer.appendChild(hlry.p.divSiguiente);
-    hlry.p.divReproductor.appendChild(hlry.p.divContenF);
-
-    hlry.p.divURL = document.createElement('div');
-    hlry.p.divURL.style.marginBottom = '5px';
-    hlry.p.lblURLV = document.createElement('label');
-    hlry.p.lblURLV.setAttribute('for', 'txtUrlVideoYoutube');
-    hlry.p.lblURLV.innerHTML = 'URL Video: ';
-    hlry.p.txtUrlVideoYoutube = document.createElement('input');
-    hlry.p.txtUrlVideoYoutube.setAttribute('id', 'txtUrlVideoYoutube');
-    //hlry.p.divURL.appendChild(hlry.p.lblURLV);
-    //hlry.p.divURL.appendChild(hlry.p.txtUrlVideoYoutube);
-    hlry.m.crearDivFila();
-    hlry.p.divIzq.appendChild(hlry.p.lblURLV);
-    hlry.p.divDer.appendChild(hlry.p.txtUrlVideoYoutube);
-    hlry.p.divReproductor.appendChild(hlry.p.divContenF);
-
-    hlry.p.divCola = document.createElement('div');
-    hlry.p.divCola.style.marginBottom = '5px';
-    hlry.p.btnJDespues = document.createElement('button');
-    hlry.p.btnCola = document.createElement('button');
-    hlry.p.btnRandom = document.createElement('button');
-    hlry.p.btnJDespues.setAttribute('id', 'btnJDespues');
-    hlry.p.btnCola.setAttribute('id', 'btnCola');
-    hlry.p.btnRandom.setAttribute('id', 'btnRandom');
-    hlry.p.btnJDespues.innerHTML = 'justo despues';
-    hlry.p.btnCola.innerHTML = 'al final';
-    hlry.p.btnRandom.innerHTML = 'Aleatorio';
-    // btnJDespues.addEventListener('onclick', hlry.m.agregarVideoDespues("'"+txtUrlVideoYoutube.value+"'"));
-    // btnCola.addEventListener('onclick', hlry.m.agregarVideoAlFinal("'"+txtUrlVideoYoutube.value+"'"));
-    hlry.p.btnJDespues.addEventListener('click', hlry.m.agregarVideoDespues2);
-    hlry.p.btnCola.addEventListener('click', hlry.m.agregarVideoAlFinal2);
-    hlry.p.btnRandom.addEventListener('click', hlry.m.agregarRandom);
-    // hlry.p.divCola.appendChild(hlry.p.btnJDespues);
-    // hlry.p.divCola.appendChild(hlry.p.btnCola);
-    hlry.m.crearDivFila();
-    hlry.p.divIzq.innerHTML = "Agregar:";
-    hlry.p.divDer.appendChild(hlry.p.btnJDespues);
-    hlry.p.divDer.appendChild(hlry.p.btnCola);
-    hlry.p.divDer.appendChild(hlry.p.btnRandom);
-    hlry.p.divReproductor.appendChild(hlry.p.divContenF);
-
-
-
-    // hlry.p.divReproductor.appendChild(hlry.p.divSiguiente);
-    // hlry.p.divReproductor.appendChild(hlry.p.divURL);
-    // hlry.p.divReproductor.appendChild(hlry.p.divCola);
-
-    hlry.p.appYT = document.getElementsByTagName('ytd-app')[0];
-    hlry.p.appYT.style.position = 'inherit';
-    //var container = document.getElementById('container');
-
-    document.getElementsByTagName('body')[0].insertBefore(hlry.p.divReproductor, hlry.p.appYT);
-  },
-
   limpiararrayUrl: function(array){
     if(array !== null || array !== undefined){
       array.forEach(function(item, index){
@@ -447,7 +316,7 @@ hlry.m = {
 
 //listas de videos
 //salsa
-["KU4LpLKwez4", "rGoMd4kBxQY", "k4ZYi0DbpTY", "JfoIqtyCnCU", "NB4x_QqZECw", "AYc8SC5nnNA", "wU52X9duq6U", "cEz2J24LLUw", "oz13wzHmEWM", "j_CfZK8FPqY", "BUCtau7a7Ak", "_EQIyt5-z0I", "C5ihFyxaUMo", "HOEyK-UHXEA", "KU4LpLKwez4", "m5_NNJSpPUM", "v2zARXKRHVg", "DZtGjOqqlbE", "SYMx8kT4c7U", "ket82fTGQpg", "-L-lSzDeZw8", "0ykUIOdmkj8", "bXA1agPWzg0", "PDUYfpDhD40", "5eQamJHEue8", "QBuueYkmYVI", "JcASh0OpWoU", "4YAoWksQhw4", "OvQArMzHt90", "pk7MrZ-_7iQ", "PdoNzV19vng", "7DikmNa_gg0", "hQdN437xMHg", "t15qx9F5bi8", "eqwu2NpbQT8", "xSGXNc8T9S0", "OGWUI-Z8Z4w", "wzY3oHpIMso", "tY9oa_1rZsw", "scC8I9xl4eg", "8vBeHY6yoUg", "7z2SULKMdiQ", "mvX4__COaaY", "JfoIqtyCnCU", "7KxkMLAZlzw", "q9SqG4XX8ZU", "bGizZTJs0Uo", "PqmLPeL8aj4", "H0vU9mtxZ98", "FKKl24q73vI", "akNxndZQ45A", "EhM6qKx-ECI", "uN0rmmreopE", "cQhvoL6vLXo", "J1--Eg5DPRo", "arWvQNcLKqs", "A3uIUXMJ1xc", "KS9xeYh-HWk", "XiEoCGjwN08", "rGoMd4kBxQY", "r4WWa5j-NJk", "WI0Ikrs3E_k", "6nFpUWeyDUc", "V1NiWuosRRM", "e0DWx8kG-4o", "i4PA7rvpvhk", "7HmG_XZYtZg", "jo9i8I83HIw", "XIoUz-nEu0g", "ZChfr2rhQEg", "z1LLPvhpCQE", "q9SqG4XX8ZU", "eu-A5X_x3k4", "yt8_NLgNfQw", "E9iIBCO3vlE", "7vuYeJ1gSSE", "x6EGixAn7Lk", "J1--Eg5DPRo", "FEWDArMv6GU", "3H2rE2i_fL4", "xTHmHHhk3WY", "UKBlYmqDf4I", "PHbvY3WGImE", "hDTkzhvUhwM", "t6j1fuwRGQ4", "VrTkv3vMCvw", "ZBlDF78IGc8", "xJHHMDLqJAA", "zVZHqpgQvlg", "CIcDWHxR-ao", "sqmIOptW8Jo", "OvQArMzHt90", "HRt8Ho_eyEM", "zwUJIgBJhZg", "C5ihFyxaUMo", "JYxIhRYv_nc", "L6GI1r2teW4", "1j3QHyBOyhg", "0wWRdgEw1I0", "LuqGyeJgT6E", "XixGgMfaJck", "RGqQXW_qblg", "1ZguRilbRjA", "ghjFffX25cw", "83h-cjtfTgE", "coW-lY_uHWM", "QkZscosb6mM", "hd0cl2d2ziU", "Njkg2ubUaug", "fciL4yULkns"]
+["hQdN437xMHg", "t15qx9F5bi8", "eqwu2NpbQT8", "xSGXNc8T9S0", "OGWUI-Z8Z4w", "wzY3oHpIMso", "tY9oa_1rZsw", "scC8I9xl4eg", "8vBeHY6yoUg", "7z2SULKMdiQ", "mvX4__COaaY", "JfoIqtyCnCU", "7KxkMLAZlzw", "q9SqG4XX8ZU", "bGizZTJs0Uo", "PqmLPeL8aj4", "H0vU9mtxZ98", "FKKl24q73vI", "akNxndZQ45A", "EhM6qKx-ECI", "uN0rmmreopE", "cQhvoL6vLXo", "27eJPzxvuG8", "J1--Eg5DPRo", "arWvQNcLKqs", "AXN-_asIaYs", "A3uIUXMJ1xc", "KS9xeYh-HWk", "XiEoCGjwN08", "rGoMd4kBxQY", "r4WWa5j-NJk", "WI0Ikrs3E_k", "6nFpUWeyDUc", "V1NiWuosRRM", "e0DWx8kG-4o", "i4PA7rvpvhk", "7HmG_XZYtZg", "jo9i8I83HIw", "XIoUz-nEu0g", "ZChfr2rhQEg", "z1LLPvhpCQE", "q9SqG4XX8ZU", "eu-A5X_x3k4", "yt8_NLgNfQw", "E9iIBCO3vlE", "7vuYeJ1gSSE", "x6EGixAn7Lk", "J1--Eg5DPRo", "FEWDArMv6GU", "3H2rE2i_fL4", "xTHmHHhk3WY", "UKBlYmqDf4I", "PHbvY3WGImE", "hDTkzhvUhwM", "t6j1fuwRGQ4", "VrTkv3vMCvw", "ZBlDF78IGc8", "xJHHMDLqJAA", "zVZHqpgQvlg", "CIcDWHxR-ao", "sqmIOptW8Jo", "OvQArMzHt90", "HRt8Ho_eyEM", "zwUJIgBJhZg", "C5ihFyxaUMo", "JYxIhRYv_nc", "L6GI1r2teW4", "1j3QHyBOyhg", "0wWRdgEw1I0", "LuqGyeJgT6E", "XixGgMfaJck", "RGqQXW_qblg", "1ZguRilbRjA", "ghjFffX25cw", "83h-cjtfTgE", "coW-lY_uHWM", "QkZscosb6mM", "dJ43r_jswQM", "hd0cl2d2ziU", "Njkg2ubUaug", "fciL4yULkns", "KU4LpLKwez4", "rGoMd4kBxQY", "k4ZYi0DbpTY", "NB4x_QqZECw", "AYc8SC5nnNA", "wU52X9duq6U", "cEz2J24LLUw", "oz13wzHmEWM", "j_CfZK8FPqY", "BUCtau7a7Ak", "_EQIyt5-z0I", "C5ihFyxaUMo", "HOEyK-UHXEA", "KU4LpLKwez4", "m5_NNJSpPUM", "v2zARXKRHVg", "DZtGjOqqlbE", "SYMx8kT4c7U", "ket82fTGQpg", "-L-lSzDeZw8", "0ykUIOdmkj8", "bXA1agPWzg0", "PDUYfpDhD40", "5eQamJHEue8", "QBuueYkmYVI", "5UWk3_e6edg", "ygC21anaSwA", "JcASh0OpWoU", "4YAoWksQhw4", "OvQArMzHt90", "pk7MrZ-_7iQ", "PdoNzV19vng", "7DikmNa_gg0"]
 
 //rock
 ["EU0LljxpHIk", "fnD0MKzq6QI", "6NXnxTNIWkc", "75_slEkywpY", "hSylsKEKGCo", "z_NJhmtQWAs", "PUzWDf9S9Rk", "JAU88rTbPGg", "fciL4yULkns", "r2g0pM3PMNQ", "1w7OgIMMRc4", "l9kXym1doYA", "twEGSGpLiyc", "YbK00KvsNAE", "re1btP_rGys", "7QU1nvuxaMA"]
