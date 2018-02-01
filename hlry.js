@@ -311,6 +311,45 @@ hlry.m = {
       });
     }
     return array;
+  },
+
+  ordernarAleatoriamenteLst: function(){
+    var lstRes = undefined;
+    var ir = -1;
+    var tam = hlry.p.lstVideos.length;
+    var ude;
+    try {
+      if(tam > 0){
+        lstRes = new Array(tam);
+
+        for(var i = 0; i <= tam; i++){
+          while(ir === -1){
+            ir = Math.floor(Math.random()*(tam));
+
+            if(lstRes[ir] === undefined){
+              lstRes[ir] = hlry.p.lstVideos[i];
+            }
+            else{
+              if(i >= hlry.p.lstVideos.length)
+                ir = 1;
+              else {
+                ude = lstRes.find(function(elem){
+                    if(elem === undefined)
+                      return elem;
+                });
+                if(ude === undefined)
+                  ir = -1;
+              }
+            }
+          }
+          ir = -1;
+        }
+      }
+
+      hlry.p.lstVideos = lstRes;
+    } catch (e) {
+      console.log(e);
+    }
   }
 };
 //CODIGO FIN
@@ -338,4 +377,4 @@ hlry.m = {
 
 
 //ballenatos
-["2VrUo97lT1g", "sy27B1RQhvM", "uwPXHD2Glwo", "IftIRHSexCo", "DS14-4g0wcs", "nnVOXvEzYjY", "8jtfXHadYIE", "o6UEHWxyP28", "9_l-uq1GSvk", "Xpa9d0148ME", "w45mYm_IoN8", "OX7daQbqlzc", "fciL4yULkns", "qvARhm5zlVU", "1-UlpANpEsk", "yry3rgGlRUw", "vWLfkZr69l4", "BIbonPyTuHQ", "8r0AmjttwQk", "ZMmpJHFEPus", "i933r5eAV5k", "ihuO0Hb4_W4", "Yv5DMqoWLPw", "UFfopdKoZ94", "F3Q8EpjZjg8", "GuOZARMaStY", "9JKm6xmfqkE", "cfPGDZL6X3c", "vqYVuDhtCGo", "f0KQv9hwQVE", "5L9itEadUCE", "yskXLolvoV8", "0sG1rtaQAFQ", "lfXIM2cJcmg", "RpK7y4vht5E", "Yq79ibIx2sc", "pD4H6ecTiG0", "1IGy1ZKBgVg", "Jmq39BfDBfE", "I_BCB1dxL-8", "Vx4mrrQOOgA", "ZDCeTEDg4Q8", "zlICddAynmI", "c2jgy0QrnqQ", "1IGy1ZKBgVg", "Z1BvQrViHWs", "8YmplZWFIMM", "9Zfnoc4succ", "Kq9gp4tvr90", "GdqBrRVK2Cs", "wWIYR7AEIZ0", "D1OYcs9UHXk", "YOYBC1UXw9k", "siLc-noft7Q", "NifHL2mzj1A", "DgwDUAIwhU4", "FoT14wCKkvM", "i17eZFCXkU0", "MIMtn0S15YY", "JWYIsLVJ_xc"]
+["8jtfXHadYIE", "zlICddAynmI", "pD4H6ecTiG0", "uwPXHD2Glwo", "8YmplZWFIMM", "D1OYcs9UHXk", "f0KQv9hwQVE", "FoT14wCKkvM", "1-UlpANpEsk", "i933r5eAV5k", "MIMtn0S15YY", "qvARhm5zlVU", "Jmq39BfDBfE", "YOYBC1UXw9k", "9_l-uq1GSvk", "JWYIsLVJ_xc", "8r0AmjttwQk", "c2jgy0QrnqQ", "2VrUo97lT1g", "0sG1rtaQAFQ", "fciL4yULkns", "wWIYR7AEIZ0", "GuOZARMaStY", "Kq9gp4tvr90", "1IGy1ZKBgVg", "vWLfkZr69l4", "DS14-4g0wcs", "NifHL2mzj1A", "BIbonPyTuHQ", "sy27B1RQhvM", "o6UEHWxyP28", "9Zfnoc4succ", "lfXIM2cJcmg", "5L9itEadUCE", "pZtb0OQ1HiA", "nnVOXvEzYjY", "w45mYm_IoN8", "vqYVuDhtCGo", "IftIRHSexCo", "ihuO0Hb4_W4", "ZMmpJHFEPus", "Yv5DMqoWLPw", "RpK7y4vht5E", "Yq79ibIx2sc", "F3Q8EpjZjg8", "Vx4mrrQOOgA", "cfPGDZL6X3c", "9JKm6xmfqkE", "yskXLolvoV8", "DgwDUAIwhU4", "OX7daQbqlzc", "ZDCeTEDg4Q8", "UFfopdKoZ94", "siLc-noft7Q", "I_BCB1dxL-8", "i17eZFCXkU0", "Xpa9d0148ME", "Z1BvQrViHWs", "1IGy1ZKBgVg", "yry3rgGlRUw", "GdqBrRVK2Cs"]
