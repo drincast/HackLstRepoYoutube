@@ -330,6 +330,7 @@ hlry.m = {
               lstRes[ir] = hlry.p.lstVideos[i];
             }
             else{
+
               if(i >= hlry.p.lstVideos.length)
                 ir = 1;
               else {
@@ -366,7 +367,7 @@ hlry.m = {
 ["JRfuAukYTKg", "N9hazmsUxrM", "gCYcHz2k5x0", "JwQZQygg3Lk", "PVzljDmoPVs", "ALZHF5UqnU4", "_ovdm2yX4MA", "hWjrMTWXH28", "EVr__5Addjw", "jUe8uoKdHao", "mIIN_SGQy9c", "ebXbLfLACGM", "hHUbLv4ThOo", "IcrbM1l_BoI", "u0pmV7GoTjc", "NUVCQXMUVnI", "EPo5wWmKEaI", "u9LH_y159sg", "YxIiPLVR6NA", "5jlI4uzZGjU", "TSNerxNwWtU", "nYh-n7EOtMA", "cHHLHGNpCSA", "HJb0VYVtaNc", "BR_DFMUzX4E", "b4Bj7Zb-YD4", "fciL4yULkns", "5dbEhBKGOtY"]
 
 //varios
-["7zp1TbLFPp8", "kXYiU_JCYtU", "GurkREc-q4I", "H2jCbXiEQI4", "6dW6aNAZGTM", "p-Z3YrHJ1sU", "RYnFIRc0k6E", "mIIN_SGQy9c", "m3fx4LUBSrM", "gmc4tkVJow8", "EPo5wWmKEaI", "E3zxvWvxDjQ", "mcGBVy3-W4s", "2up_Eq6r6Ko", "9J9FlVCUeLM", "5jlI4uzZGjU", "EVr__5Addjw", "j0lSpNtjPM8", "S5FCdx7Dn0o", "cHHLHGNpCSA", "EH6myRjE848", "jzy2dgEUOhY", "CdXesX6mYUE", "5ZF5m-vmDzM", "jRGrNDV2mKc", "7iNbnineUCI", "0pPXOq87atY", "VqEbCxg2bNI", "_i2EwTKRmsU", "920jLVQOLFI", "YbK00KvsNAE", "SHq2qrFUlGY", "0S3foICf5uI", "OxxggwHFj7M", "_I00wIWw7FQ", "RIUy6aCqUMw", "jnDjEHyhFpU", "CHekNnySAfM", "fciL4yULkns", "YG2p6XBuSKA", "SmM0653YvXU", "5dbEhBKGOtY"]
+["7zp1TbLFPp8", "kXYiU_JCYtU", "GurkREc-q4I", "H2jCbXiEQI4", "6dW6aNAZGTM", "p-Z3YrHJ1sU", "RYnFIRc0k6E", "mIIN_SGQy9c", "m3fx4LUBSrM", "gmc4tkVJow8", "EPo5wWmKEaI", "E3zxvWvxDjQ", "mcGBVy3-W4s", "2up_Eq6r6Ko", "9J9FlVCUeLM", "5jlI4uzZGjU", "EVr__5Addjw", "j0lSpNtjPM8", "S5FCdx7Dn0o", "cHHLHGNpCSA", "EH6myRjE848", "jzy2dgEUOhY", "CdXesX6mYUE", "5ZF5m-vmDzM", "jRGrNDV2mKc", "7iNbnineUCI", "0pPXOq87atY", "VqEbCxg2bNI", "_i2EwTKRmsU", "920jLVQOLFI", "YbK00KvsNAE", "SHq2qrFUlGY", "0S3foICf5uI", "OxxggwHFj7M", "_I00wIWw7FQ", "RIUy6aCqUMw", "jnDjEHyhFpU", "CHekNnySAfM", "fciL4yULkns", "YG2p6XBuSKA", "SmM0653YvXU", "5dbEhBKGOtY", "W2ylf23m_DU"]
 
 //piano
 ["JbjzPKTfjlc", "rExcQ5nm_yU", "Pm1a7VzISK4", "pL0bxewHbjo", "2W_G3xmSGfo", "W_0GdB4oD6s", "4I_NYya-WWg", "GdU6snztM0A", "eHwR9kTIMeI", "NvryolGa19A", "kcihcYEOeic", "fciL4yULkns"]
@@ -378,3 +379,6 @@ hlry.m = {
 
 //ballenatos
 ["8jtfXHadYIE", "zlICddAynmI", "pD4H6ecTiG0", "uwPXHD2Glwo", "8YmplZWFIMM", "D1OYcs9UHXk", "f0KQv9hwQVE", "FoT14wCKkvM", "1-UlpANpEsk", "i933r5eAV5k", "MIMtn0S15YY", "qvARhm5zlVU", "Jmq39BfDBfE", "YOYBC1UXw9k", "9_l-uq1GSvk", "JWYIsLVJ_xc", "8r0AmjttwQk", "c2jgy0QrnqQ", "2VrUo97lT1g", "0sG1rtaQAFQ", "fciL4yULkns", "wWIYR7AEIZ0", "GuOZARMaStY", "Kq9gp4tvr90", "1IGy1ZKBgVg", "vWLfkZr69l4", "DS14-4g0wcs", "NifHL2mzj1A", "BIbonPyTuHQ", "sy27B1RQhvM", "o6UEHWxyP28", "9Zfnoc4succ", "lfXIM2cJcmg", "5L9itEadUCE", "pZtb0OQ1HiA", "nnVOXvEzYjY", "w45mYm_IoN8", "vqYVuDhtCGo", "IftIRHSexCo", "ihuO0Hb4_W4", "ZMmpJHFEPus", "Yv5DMqoWLPw", "RpK7y4vht5E", "Yq79ibIx2sc", "F3Q8EpjZjg8", "Vx4mrrQOOgA", "cfPGDZL6X3c", "9JKm6xmfqkE", "yskXLolvoV8", "DgwDUAIwhU4", "OX7daQbqlzc", "ZDCeTEDg4Q8", "UFfopdKoZ94", "siLc-noft7Q", "I_BCB1dxL-8", "i17eZFCXkU0", "Xpa9d0148ME", "Z1BvQrViHWs", "1IGy1ZKBgVg", "yry3rgGlRUw", "GdqBrRVK2Cs"]
+
+//clasica
+["ozex2jDnOQc", "PGwSQrZ-qTc", "j6EJBV-V_fw", "sOgz6jP2IC4", "ZqQsShgJpgE", "5-MT5zeY6CU", "jERzLseoAOM", "YofUPSyCrwo", "CYFUiYoYPbg", "k1-TrAvp_xs", "jALtukZdS-A", "zsRLV5BKFtg", "TVDREzBijRI", "XXIu0MRuIQU", "nDl6dRonrnQ", "MC44L5T0FVA", "e6M_JXRV2l0", "UPNUp9DwFR0", "9E6b3swbnWg"]
